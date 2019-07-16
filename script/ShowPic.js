@@ -43,3 +43,24 @@ function countBodyChildren(){
     var body_element = document.getElementsByTagName("body")[0];
     alert(body_element.childNodes.length);
 }
+function insertafter(newElement,targetElement){
+    var parent = targetElement.parentNode;
+    if(parent.lastChild == targetElement)parent.appendChild(newElement);
+    else parent.insertBefore(newElement,targetElement.nextSibling);
+}
+function preparePlaceholder(){
+    var placeholder = document.createElement("img");
+    placeholder.setAttribute("id","placeholder");
+    placeholder.setAttribute("src","");
+    placeholder.setAttribute("alt","myImage");
+    var description = document.createElement("p")
+    description.setAttribute("id","description");
+    var desctext = document.createTextNode("Choose a Image");
+    description.appendChild(desctext);
+    var gallery = document.getElementById("imagegallery");
+    insertafter(placeholder,gallery);
+    insertafter(description,placeholder);
+
+}
+addLoadEvent(preparePlaceholder);
+addLoadEvent(prepareGally);
