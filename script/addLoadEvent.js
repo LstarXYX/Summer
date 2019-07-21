@@ -34,11 +34,26 @@ function moveElement(elementID,final_x,final_y,interval){
     }
     var xpos = parseInt(elem.style.left);
     var ypos = parseInt(elem.style.top);
+    var dist = 0;
     if(xpos==final_x&&ypos==final_y)return false;
-    if(xpos<final_x)xpos++;
-    if(xpos>final_x)xpos--;
-    if(ypos<final_y)ypos++;
-    if(ypos>final_y)ypos--;
+    if(xpos<final_x){
+        dist = Math.ceil((final_x - xpos)/10);
+        xpos = xpos + dist;
+    }
+    if(xpos>final_x)
+    {
+        dist = Math.ceil((xpos - final_x)/10);
+        xpos = xpos - dist;
+    }
+    if(ypos<final_y)
+    {
+        dist = Math.ceil((final_y - ypos)/10);
+        ypos = ypos + dist;
+    }
+    if(ypos>final_y){
+        dist = Math.ceil((ypos - final_y)/10);
+        ypos = ypos - dist;
+    }
     elem.style.left = xpos+"px";
     elem.style.top  = ypos+"px";
     repeat = "moveElement('"+elementID+"',"+final_x+","+final_y+","+interval+")";
